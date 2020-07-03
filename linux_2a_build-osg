@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# build + "install" (rearragne build artifacts) OpenSceneGraph dependency
+
+set -xeuo pipefail
+
+
+install_dir="${PWD}/OpenSceneGraph/install"
+mkdir -p "${install_dir}"
+
+
+echo "mk-osg-pkg: building openscenegraph"
+
+mkdir -p OpenSceneGraph/build
+cd OpenSceneGraph/build
+cmake .. \
+      -DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE:-Release}" \
+      -DCMAKE_VERBOSE_MAKEFILE=TRUE \
+      -DUSE_RPATH=OFF \
+      -DCMAKE_INSTALL_PREFIX="${install_dir}"
+make -j$(nproc)
+make install
+cd -

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -xeuo pipefail
+
+export CMAKE_BUILD_TYPE=Release
+
+echo "${0}: starting OpenSceneGraph build"
+./linux_2a_build-osg
+
+echo "${0}: starting simbody build"
+./linux_2b_build-simbody
+
+echo "${0}: starting OpenSim3 build"
+./linux_2c_build-opensim3
+
+echo "${0}: build complete: the following directories were created:"
+find OpenSceneGraph/install -maxdepth 2 -mindepth 1
+find simbody/install -maxdepth 2 -mindepth 1
+find opensim3-scone/install -maxdepth 2 -mindepth 1

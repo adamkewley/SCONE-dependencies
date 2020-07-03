@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+set -xeuo pipefail
+
+OSG_TAG="${OSG_TAG:-OpenSceneGraph-3.4.1}"
+general_deps=(
+    git
+    rsync
+    cmake
+    make
+    gcc
+    g++
+)
+openscenegraph_build_deps=(
+    libpng-dev
+    zlib1g-dev
+    qt5-default
+    libqt5widgets5
+    libqt5opengl5-dev
+)
+simbody_build_deps=(
+    liblapack-dev
+)
+all_deps=(
+    "${general_deps[@]}"
+    "${openscenegraph_build_deps[@]}"
+    "${simbody_build_deps[@]}"
+)
+
+
+# if root is running this script then do not use `sudo` (some distros
+# do not supply it)
+if [[ "${UID}" == 0 ]]; then
+    sudo=''
+else
+    sudo='sudo'
+fi
+
+echo "${0}: installing system-level build dependencies"
+${sudo} apt-get update && ${sudo} apt-get -y install "${all_deps[@]}"
+
+
+echo "${0}: checking out submodules (source dependencies that need to be built)"
+git submodule update --init --recursive

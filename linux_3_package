@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -xeuo pipefail
+
+version=$(cat ./VERSION)
+output_dir="build/SCONE-binaries-${version}"
+
+mkdir -p "${output_dir}"
+
+mkdir -p "${output_dir}/OpenSceneGraph"
+rsync -av OpenSceneGraph/install/* "${output_dir}/simbody/"
+
+mkdir -p "${output_dir}/simbody"
+rsync -av simbody/install/* "${output_dir}/simbody/"
+
+mkdir -p "${output_dir}/opensim3-scone"
+rsync -av opensim3-scone/install/* "${output_dir}/opensim3-scone/"
+
+echo "${0}: dir structure made:"
+find "${output_dir}" -mindepth 1 -maxdepth 3
+
+cd build/
+tar zvcf "SCONE-binaries-${version}.tar.gz" "SCONE-binaries-${version}"
+cd -
+echo "${0}: output package made"

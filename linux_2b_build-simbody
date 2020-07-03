@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -xeuo pipefail
+
+# this is where the headers + libs are placed post-build
+mkdir -p simbody/install
+install_dir="${PWD}/simbody/install"
+
+mkdir -p simbody/build
+cd simbody/build
+cmake .. \
+      -DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE:-Release}" \
+      -DCMAKE_VERBOSE_MAKEFILE=TRUE \
+      -DCMAKE_INSTALL_PREFIX="${install_dir}"
+make -j$(nproc)
+
+# create the relevant install/include/ install/lib/ dirs that opensim
+# (and SCONE, transitively) need
+make install
+cd -
