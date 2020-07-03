@@ -1,3 +1,9 @@
 [submodule "OpenSceneGraph"]
 	path = OpenSceneGraph
 	url = ../../openscenegraph/OpenSceneGraph
+[submodule "opensim3-scone"]
+	path = opensim3-scone
+	url = https://github.com/tgeijten/opensim3-scone.git
+[submodule "simbody"]
+	path = simbody
+	url = https://github.com/simbody/simbody.git
