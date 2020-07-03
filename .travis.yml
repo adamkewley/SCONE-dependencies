@@ -1,0 +1,5 @@
+dist: bionic
+script:
+- ./linux_1_get-dependencies
+- ./linux_2_build
+- ./linux_3_package
