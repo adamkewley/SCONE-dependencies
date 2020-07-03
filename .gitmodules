@@ -1,0 +1,3 @@
+[submodule "OpenSceneGraph"]
+	path = OpenSceneGraph
+	url = ../../openscenegraph/OpenSceneGraph
