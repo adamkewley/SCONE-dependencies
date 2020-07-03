@@ -1,5 +1,5 @@
 dist: bionic
 script:
 - ./linux_1_get-dependencies
-- ./linux_2_build
+- CMAKE_VERBOSE_MAKEFILE=FALSE ./linux_2_build
 - ./linux_3_package

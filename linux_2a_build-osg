@@ -15,7 +15,7 @@ mkdir -p OpenSceneGraph/build
 cd OpenSceneGraph/build
 cmake .. \
       -DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE:-Release}" \
-      -DCMAKE_VERBOSE_MAKEFILE=TRUE \
+      -DCMAKE_VERBOSE_MAKEFILE="${CMAKE_VERBOSE_MAKEFILE:-TRUE}" \
       -DUSE_RPATH=OFF \
       -DCMAKE_INSTALL_PREFIX="${install_dir}"
 make -j$(nproc)

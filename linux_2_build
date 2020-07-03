@@ -2,8 +2,6 @@
 
 set -xeuo pipefail
 
-export CMAKE_BUILD_TYPE=Release
-
 echo "${0}: starting OpenSceneGraph build"
 ./linux_2a_build-osg
 
