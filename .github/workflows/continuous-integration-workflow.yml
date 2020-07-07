@@ -1,0 +1,12 @@
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Get Dependencies
+      run: ./linux_1_get-dependencies
+    - name: Build Sources
+      run: CMAKE_VERBOSE_MAKEFILE=FALSE ./linux_2_build
+    - name: Package Binaries
+      run: ./linux_3_package
