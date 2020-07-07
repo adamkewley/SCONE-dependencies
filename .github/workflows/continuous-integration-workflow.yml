@@ -4,9 +4,13 @@ jobs:
     name: Build
     runs-on: ubuntu-18.04
     steps:
+    - uses: actions/checkout@v1
+    
     - name: Get Dependencies
       run: cd $GITHUB_WORKSPACE && ./linux_1_get-dependencies
+      
     - name: Build Sources
       run: cd $GITHUB_WORKSPACE && CMAKE_VERBOSE_MAKEFILE=FALSE ./linux_2_build
+      
     - name: Package Binaries
       run: cd $GITHUB_WORKSPACE && ./linux_3_package
