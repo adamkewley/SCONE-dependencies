@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Get Dependencies
-      run: ./linux_1_get-dependencies
+      run: cd $GITHUB_WORKSPACE && ./linux_1_get-dependencies
     - name: Build Sources
-      run: CMAKE_VERBOSE_MAKEFILE=FALSE ./linux_2_build
+      run: cd $GITHUB_WORKSPACE && CMAKE_VERBOSE_MAKEFILE=FALSE ./linux_2_build
     - name: Package Binaries
-      run: ./linux_3_package
+      run: cd $GITHUB_WORKSPACE && ./linux_3_package
